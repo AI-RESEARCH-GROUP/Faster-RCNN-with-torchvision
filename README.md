@@ -68,3 +68,6 @@ IOU | area |  maxDets  |  value
 ##### 结果示例
 <p align="center"><img src="assets/9.jpg" width="320"\></p>
 <p align="center"><img src="assets/4.jpg" width="320"\></p>
+
+
+pip install torch==1.7.0+cu101 torchvision==0.8.1+cu101 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
