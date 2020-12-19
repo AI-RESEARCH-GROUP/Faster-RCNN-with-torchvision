@@ -19,7 +19,7 @@ import random
 def get_args():
     parser = argparse.ArgumentParser(description='Pytorch Faster-rcnn Training')
 
-    parser.add_argument('--data_path', default='/public/yzy/coco/2017/', help='dataset path')
+    parser.add_argument('--data_path', default='/dataset/coco2017/', help='dataset path')
     parser.add_argument('--model', default='fasterrcnn_resnet50_fpn', help='model')
     parser.add_argument('--dataset', default='coco', help='dataset')
     parser.add_argument('--device', default='cuda', help='device')

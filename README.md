@@ -7,6 +7,8 @@
 ##### 代码及环境搭建
     $ git clone https://github.com/supernotman/Faster-RCNN-with-torchvision.git
     $ cd Faster-RCNN-with-torchvision/
+    $ pip install torch==1.7.0+cu101 torchvision==0.8.1+cu101 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
+
     $ sudo pip install -r requirements.txt
 
 ##### 数据准备
@@ -70,4 +72,3 @@ IOU | area |  maxDets  |  value
 <p align="center"><img src="assets/4.jpg" width="320"\></p>
 
 
-pip install torch==1.7.0+cu101 torchvision==0.8.1+cu101 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
