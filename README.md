@@ -7,7 +7,7 @@
 ##### 代码及环境搭建
     $ git clone https://github.com/supernotman/Faster-RCNN-with-torchvision.git
     $ cd Faster-RCNN-with-torchvision/
-    $ pip install torch==1.7.0+cu101 torchvision==0.8.1+cu101 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
+pip install torch==1.7.0+cu101 torchvision==0.8.1+cu101 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
 
     $ sudo pip install -r requirements.txt
 
@@ -29,7 +29,7 @@
 ## 训练及测试
 ##### 命令
 ```
-python -m torch.distributed.launch --nproc_per_node=6 --use_env train.py --world-size 6 --b 4
+python -m torch.distributed.launch --nproc_per_node=6 --use_env train.py --world-size 4 --b 4
 ```
 
 ##### 部分参数说明
