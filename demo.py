@@ -8,15 +8,13 @@ import sys
 sys.path.append('./')
 import coco_names
 import random
-
-from default_image_path import default_image_path
+from .default_image_path import default_image_path
 
 
 def get_args():
     parser = argparse.ArgumentParser(description='Pytorch Faster-rcnn Detection')
 
-    parser.add_argument('--model_path', type=str, default='./result/model_13.pth', help='model path')
-    parser.add_argument('--image_path', type=str, default=default_image_path, help='image path')
+    parser.add_argument('--image_path', default=default_image_path, type=str, help='image path')
     parser.add_argument('--model', default='fasterrcnn_resnet50_fpn', help='model')
     parser.add_argument('--dataset', default='coco', help='model')
     parser.add_argument('--score', type=float, default=0.8, help='objectness score threshold')
@@ -36,19 +34,16 @@ def random_color():
 def main():
     args = get_args()
     input = []
-    if args.dataset == 'coco':
-        num_classes = 91
-        names = coco_names.names
+    num_classes = 91
+    names = coco_names.names
 
     # Model creating
     print("Creating model")
-    model = torchvision.models.detection.__dict__[args.model](num_classes=num_classes, pretrained=False)
+    model = torchvision.models.detection.__dict__[args.model](num_classes=num_classes, pretrained=True)
     model = model.cuda()
 
     model.eval()
 
-    save = torch.load(args.model_path)
-    model.load_state_dict(save['model'])
     src_img = cv2.imread(args.image_path)
     img = cv2.cvtColor(src_img, cv2.COLOR_BGR2RGB)
     img_tensor = torch.from_numpy(img / 255.).permute(2, 0, 1).float().cuda()
@@ -61,10 +56,11 @@ def main():
     # 转换成整形才能画图
     boxes = boxes.long()
 
+    print(src_img.shape)
+
     for idx in range(boxes.shape[0]):
         if scores[idx] >= args.score:
             x1, y1, x2, y2 = boxes[idx][0], boxes[idx][1], boxes[idx][2], boxes[idx][3]
-            name = names.get(str(labels[idx].item()))
 
             # x1, x2, y1, y2不能越界
             if x1 < 0:
@@ -86,16 +82,14 @@ def main():
             if y2 > src_img.shape[1]:
                 y2 = src_img.shape[1]
 
-            # cv2.rectangle(img,(x1,y1),(x2,y2),colors[labels[idx].item()],thickness=2)
-            cv2.rectangle(src_img, (x1, y1, x2, y2), random_color(), thickness=2)
+            name = names.get(str(labels[idx].item()))
+            cv2.rectangle(src_img, (x1, y1), (x2, y2), random_color(), thickness=2)
             cv2.putText(src_img, text=name, org=(x1, y1 + 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale=0.5, thickness=1, lineType=cv2.LINE_AA, color=(0, 0, 255))
 
     cv2.imshow('result', src_img)
     cv2.waitKey()
     cv2.destroyAllWindows()
-
-    # cv2.imwrite('assets/11.jpg',img)
 
 
 if __name__ == "__main__":
