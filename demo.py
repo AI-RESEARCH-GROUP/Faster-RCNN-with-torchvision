@@ -8,7 +8,7 @@ import sys
 sys.path.append('./')
 import coco_names
 import random
-from .default_image_path import default_image_path
+from default_image_path import default_image_path
 
 
 def get_args():
