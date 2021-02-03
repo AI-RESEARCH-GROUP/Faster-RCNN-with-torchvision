@@ -67,24 +67,24 @@ def main():
             name = names.get(str(labels[idx].item()))
 
             # x1, x2, y1, y2不能越界
-            if x1 < 0:
-                x1 = 0
-            if y1 < 0:
-                y1 = 0
-            if x2 < 0:
-                x2 = 0
-            if y2 < 0:
-                y2 = 0
-
-            if x1 > src_img.shape[0]:
-                x1 = src_img.shape[0]
-            if x2 > src_img.shape[0]:
-                x2 = src_img.shape[0]
-
-            if y1 > src_img.shape[1]:
-                y1 = src_img.shape[1]
-            if y2 > src_img.shape[1]:
-                y2 = src_img.shape[1]
+            # if x1 < 0:
+            #     x1 = 0
+            # if y1 < 0:
+            #     y1 = 0
+            # if x2 < 0:
+            #     x2 = 0
+            # if y2 < 0:
+            #     y2 = 0
+            #
+            # if x1 > src_img.shape[0]:
+            #     x1 = src_img.shape[0]
+            # if x2 > src_img.shape[0]:
+            #     x2 = src_img.shape[0]
+            #
+            # if y1 > src_img.shape[1]:
+            #     y1 = src_img.shape[1]
+            # if y2 > src_img.shape[1]:
+            #     y2 = src_img.shape[1]
 
             # cv2.rectangle(img,(x1,y1),(x2,y2),colors[labels[idx].item()],thickness=2)
             cv2.rectangle(src_img, (x1, y1, x2, y2), random_color(), thickness=2)
