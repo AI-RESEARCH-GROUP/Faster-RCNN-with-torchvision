@@ -69,6 +69,15 @@ def get_dataset(name, image_set, transform):
         "coco": (r'E:\mydata\coco2017', get_coco, 91),
         "coco_kp": ('/datasets01/COCO/022719/', get_coco_kp, 2)
     }
+
+    import platform
+    sys = platform.system()
+    if sys == "Linux":
+        paths = {
+            "coco": (r'/media/zhaoqiangwei/DATA/mydata/coco2017', get_coco, 91),
+            "coco_kp": ('/datasets01/COCO/022719/', get_coco_kp, 2)
+        }
+
     p, ds_fn, num_classes = paths[name]
 
     ds = ds_fn(p, image_set=image_set, transforms=transform)
