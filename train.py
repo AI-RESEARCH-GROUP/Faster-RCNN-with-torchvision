@@ -27,7 +27,7 @@ def get_args():
     parser.add_argument('--model', default='fasterrcnn_resnet50_fpn', help='model')
     parser.add_argument('--dataset', default='coco', help='dataset')
     parser.add_argument('--device', default='cuda', help='device')
-    parser.add_argument('--b', '--batch_size', default=16, type=int)
+    parser.add_argument('--b', '--batch_size', default=2, type=int) # todo
     parser.add_argument('--epochs', default=20, type=int, metavar='N',
                         help='number of total epochs to run')    
     parser.add_argument('-j', '--workers', default=8, type=int, metavar='N',
@@ -66,7 +66,7 @@ def get_args():
 
 def get_dataset(name, image_set, transform):
     paths = {
-        "coco": ('/public/yzy/coco/2017/', get_coco, 91),
+        "coco": (r'E:\mydata\coco2017', get_coco, 91),
         "coco_kp": ('/datasets01/COCO/022719/', get_coco_kp, 2)
     }
     p, ds_fn, num_classes = paths[name]
